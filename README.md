@@ -8,7 +8,7 @@ Source Code: https://github.com/drapespy/CapAPI
 ### Examples
 
 ```py
-from capi import get_user
+from capapi import get_user
 
 user = get_user(583745403598405632)
 
