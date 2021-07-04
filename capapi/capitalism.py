@@ -184,5 +184,3 @@ class User:
 
     def is_admin(self):
         return self.has_badge("admin")
-
-print(get_user(763854419484999722).is_admin())
