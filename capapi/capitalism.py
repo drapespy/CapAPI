@@ -1,11 +1,23 @@
-import requests
-
+import requests, sys
 
 class Ratelimit(Exception):
     pass
 
 def get_user(user_id):
     return User(user_id)
+
+def banner():
+    # Some consoles are **** so I don't know why they are so **** so so so so I used std::cout
+    sys.stdout.buffer.write('''\
+   _____                    _____ _____ 
+  / ____|             /\   |  __ \_   _| Version 0.0.5
+ | |     __ _ _ __   /  \  | |__) || |   Made by drapes#0001
+ | |    / _` | '_ \ / /\ \ |  ___/ | |   
+ | |____ (_| | |_) / ____ \| |    _| |_  Python wrapper for the
+  \_____\__,_| .__/_/    \_\_|   |_____| Capitlism API
+             | |                        
+             |_|   
+'''.encode('utf8'))
 
 class User:
     
@@ -14,6 +26,8 @@ class User:
 
     @property
     def wallet(self):
+        """`property` Returns int of the money in the users wallet"""
+        
         resp = requests.get(f"https://discord.capitalismbot.repl.co/beta/api/v1?user={self.user_id}&data=wallet")
         if resp.status_code == 200:
             _json = resp.json()
@@ -23,6 +37,7 @@ class User:
 
     @property
     def bank(self):
+        """`property` Returns int of the money in the users bank"""
         resp = requests.get(f"https://discord.capitalismbot.repl.co/beta/api/v1?user={self.user_id}&data=bank")
         if resp.status_code == 200:
             _json = resp.json()
@@ -32,6 +47,7 @@ class User:
 
     @property
     def bank_max(self):
+        """`property` Returns int of the users max bank size"""
         resp = requests.get(f"https://discord.capitalismbot.repl.co/beta/api/v1?user={self.user_id}&data=bank_max")
         if resp.status_code == 200:
             _json = resp.json()
@@ -41,7 +57,8 @@ class User:
 
     @property
     def inventory(self):
-        """Returns JSON of the users inventory. To get a value use `get_user(x).inventory["beef"]`.
+        """`property` Returns json of the users inventory. 
+        To get a value use `get_user(x).inventory["beef"]`.
         I will add full inventory support after release."""
         resp = requests.get(f"https://discord.capitalismbot.repl.co/beta/api/v1?user={self.user_id}&data=inventory")
         if resp.status_code == 200:
@@ -52,7 +69,7 @@ class User:
 
     @property
     def inv(self):
-        """Returns JSON of the users inventory. To get a value use `get_user(x).inventory["beef"]`.
+        """`property` Returns json of the users inventory. To get a value use `get_user(x).inventory["beef"]`.
         I will add full inventory support after release."""
         resp = requests.get(f"https://discord.capitalismbot.repl.co/beta/api/v1?user={self.user_id}&data=inventory")
         if resp.status_code == 200:
@@ -63,7 +80,7 @@ class User:
 
     @property
     def bitcoin(self):
-        """Returns the useres bitcoin"""
+        """`property` Returns int of the users bitcoin"""
         resp = requests.get(f"https://discord.capitalismbot.repl.co/beta/api/v1?user={self.user_id}&data=bitcoin")
         if resp.status_code == 200:        
             _json = resp.json()
@@ -73,7 +90,7 @@ class User:
 
     @property
     def exp(self):
-        """Returns the users Experience"""
+        """`property` Returns int of the users experience"""
         resp = requests.get(f"https://discord.capitalismbot.repl.co/beta/api/v1?user={self.user_id}&data=exp")
         if resp.status_code == 200:
             _json = resp.json()
@@ -83,7 +100,7 @@ class User:
 
     @property
     def xp(self):
-        """Returns the users Experience"""
+        """`property` Returns int of the users experience"""
         resp = requests.get(f"https://discord.capitalismbot.repl.co/beta/api/v1?user={self.user_id}&data=exp")
         if resp.status_code == 200:
             _json = resp.json()
@@ -93,7 +110,7 @@ class User:
 
     @property
     def multiplier(self):
-        """Returns the users Experience"""
+        """`property` Returns float of the users multiplier"""
         resp = requests.get(f"https://discord.capitalismbot.repl.co/beta/api/v1?user={self.user_id}&data=multi")
         if resp.status_code == 200:
             _json = resp.json()
@@ -103,7 +120,7 @@ class User:
 
     @property
     def multi(self):
-        """Returns the users Experience"""
+        """`property` Returns float of the users multiplier"""
         resp = requests.get(f"https://discord.capitalismbot.repl.co/beta/api/v1?user={self.user_id}&data=multi")
         if resp.status_code == 200:
             _json = resp.json()
@@ -113,6 +130,7 @@ class User:
     
     @property
     def bank_colour(self):
+        """`property` Returns str of the users bank colour"""
         resp = requests.get(f"https://discord.capitalismbot.repl.co/beta/api/v1?user={self.user_id}&data=bank_color")
         if resp.status_code == 200:
             _json = resp.json()
@@ -122,6 +140,7 @@ class User:
 
     @property
     def bank_color(self):
+        """`property` Returns str of the users bank color"""
         resp = requests.get(f"https://discord.capitalismbot.repl.co/beta/api/v1?user={self.user_id}&data=bank_color")
         if resp.status_code == 200:
             _json = resp.json()
@@ -149,7 +168,7 @@ class User:
 
     @property
     def badges(self):
-        """Returns JSON of the users badges. To get a value use `get_user(x).badges["RICH"]`.
+        """`property` Returns json of the users badges. To get a value use `get_user(x).badges["RICH"]`.
         I will add full badge support later."""
         resp = requests.get(f"https://discord.capitalismbot.repl.co/beta/api/v1?user={self.user_id}&data=badges")
         if resp.status_code == 200:
