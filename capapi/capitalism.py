@@ -10,7 +10,7 @@ def banner():
     # Some consoles are **** so I don't know why they are so **** so so so so I used std::cout
     sys.stdout.buffer.write('''\
    _____                    _____ _____ 
-  / ____|             /\   |  __ \_   _| Version 0.0.6
+  / ____|             /\   |  __ \_   _| Version 0.0.7
  | |     __ _ _ __   /  \  | |__) || |   Made by drapes#0001
  | |    / _` | '_ \ / /\ \ |  ___/ | |   
  | |____ (_| | |_) / ____ \| |    _| |_  Python wrapper for the
@@ -150,6 +150,7 @@ class User:
 
     @property
     def ads(self):
+        """`property` Returns int of the users ads."""
         resp = requests.get(f"https://discord.capitalismbot.repl.co/beta/api/v1?user={self.user_id}&data=ads")
         if resp.status_code == 200:
             _json = resp.json()
@@ -159,6 +160,7 @@ class User:
 
     @property
     def job(self):
+        """`property` Returns str of the users job."""
         resp = requests.get(f"https://discord.capitalismbot.repl.co/beta/api/v1?user={self.user_id}&data=job")
         if resp.status_code == 200:
             _json = resp.json()
@@ -177,9 +179,9 @@ class User:
         if resp.status_code == 529:
             raise Ratelimit("You fucking retard, you have to pay $1 for more API calls during this minute")
 
-
     # Has Stuff
     def has_item(self, item:str):
+        """Returns True if the user has a the given item in their inventory"""
         inventory = self.inventory
         try:
             result = inventory[str(item)]
@@ -191,6 +193,7 @@ class User:
             return False
 
     def has_badge(self, item:str):
+        """Returns True if the user has the given badge."""
         badges = self.badges
         try:
             result = badges[str(item)]
@@ -202,4 +205,5 @@ class User:
             return False
 
     def is_admin(self):
+        """Returns True if the user has the badge "admin\""""
         return self.has_badge("admin")
