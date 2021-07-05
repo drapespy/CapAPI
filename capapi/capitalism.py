@@ -10,7 +10,7 @@ def banner():
     # Some consoles are **** so I don't know why they are so **** so so so so I used std::cout
     sys.stdout.buffer.write('''\
    _____                    _____ _____ 
-  / ____|             /\   |  __ \_   _| Version 0.0.5
+  / ____|             /\   |  __ \_   _| Version 0.0.6
  | |     __ _ _ __   /  \  | |__) || |   Made by drapes#0001
  | |    / _` | '_ \ / /\ \ |  ___/ | |   
  | |____ (_| | |_) / ____ \| |    _| |_  Python wrapper for the
